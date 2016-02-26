@@ -1,0 +1,63 @@
+extends layout
+
+block content
+    script.
+      var showAnswer = function(answer) {
+        alert(answer)
+      }
+    style.
+      .active {
+        color: red;
+      }
+      .date {
+        color: brown
+      }
+      .values {
+        color: green
+      }
+      .ron {
+        color: magenta
+      }
+      .number {
+        color: orange
+      }
+      .query {
+        color: blue
+      }
+      .pagination {
+        width: 600px
+      }
+      .pagination {
+        display: inline-block
+      }
+    
+    h1.
+        Question List ( #{main_count} )
+        
+    ul
+        each question, i in questions
+            li
+              <strong> 
+              p.active Category : #{question.category}
+              p.date Air Date : #{question.air_date}
+              p.number Show Number : !{question.show_number}
+              p.values Value    : !{question.value}
+              p.ron Round    : !{question.round}
+              p.query Question : !{question.question}
+              p Answer : 
+              button(onclick='showAnswer("#{question.answer}")') Reveal
+    
+    
+    .pagination  
+    
+      p. 
+        Current page : !{current}  
+        
+      p. 
+
+      if current == 1
+        a(href='/#{next}') Next
+      else
+        a(href='/#{prev}') Previous
+        &nbsp;
+        a(href='/#{next}') Next
